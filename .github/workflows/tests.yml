@@ -1,0 +1,33 @@
+name: Tests automatizados
+
+# Se ejecuta en cada push al repositorio
+on: push
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Instalar dependencias
+        run: python -m pip install -r requirements.txt
+
+      - name: Ejecutar pruebas
+        run: python -m pytest
+
+      - name: Guardar reportes como artefactos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reportes-de-pruebas
+          path: |
+            reports/
+            logs/
+            screenshots/
+          if-no-files-found: ignore
