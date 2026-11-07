@@ -1,0 +1,4 @@
+first_name,last_name,postal_code,expected_message
+,Perez,1000,First Name is required
+Micaela,,1000,Last Name is required
+Micaela,Perez,,Postal Code is required

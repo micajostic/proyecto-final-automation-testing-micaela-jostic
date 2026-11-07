@@ -11,18 +11,6 @@ from pages.login_page import LoginPage
 
 logger = logging.getLogger(__name__)
 
-STANDARD_USER = "standard_user"
-STANDARD_PASSWORD = "secret_sauce"
-
-
-@pytest.fixture
-def inventory_page(driver):
-    """Inicia sesion y devuelve el catalogo listo para usar."""
-    LoginPage(driver).load().login(STANDARD_USER, STANDARD_PASSWORD)
-    page = InventoryPage(driver)
-    page.get_title()  # espera a que el catalogo termine de cargar
-    return page
-
 
 @pytest.mark.ui
 def test_catalogo_muestra_productos(inventory_page):
