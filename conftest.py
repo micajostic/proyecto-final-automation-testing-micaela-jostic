@@ -37,7 +37,10 @@ def driver():
             "profile.password_manager_leak_detection": False,
         },
     )
-
+    # En CI (GitHub Actions) no hay pantalla: se ejecuta sin ventana
+    if os.environ.get("CI") or os.environ.get("HEADLESS") == "1":
+        opciones.add_argument("--headless=new")
+        opciones.add_argument("--window-size=1920,1080")   
     navegador = webdriver.Chrome(options=opciones)
 
     yield navegador
