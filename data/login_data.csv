@@ -1,0 +1,6 @@
+username,password,expected_result,expected_message
+standard_user,secret_sauce,success,
+locked_out_user,secret_sauce,error,locked out
+standard_user,clave_incorrecta,error,do not match
+,secret_sauce,error,Username is required
+standard_user,,error,Password is required
