@@ -60,4 +60,7 @@ class InventoryPage(BasePage):
         """Abre el menu lateral y cierra sesion."""
         logger.info("Cerrando sesion")
         self.click(self.MENU_BUTTON)
-        self.click(self.LOGOUT_LINK)
+        logout_link = self.find(self.LOGOUT_LINK)
+        # Clic por JavaScript: el menu lateral tiene una animacion
+        # y un clic normal puede caer mientras todavia se mueve
+        self.driver.execute_script("arguments[0].click();", logout_link)
